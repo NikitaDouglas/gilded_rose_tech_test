@@ -5,6 +5,7 @@ class GildedRose
   STANDARD_QUALITY_DECREASE = 1
   STANDARD_QUALITY_INCREASE = 1
   SELL_IN_DECREASE = 1
+  SELL_IN_FINAL_DAY = 0
 
   def initialize(items)
     @items = items
@@ -38,7 +39,7 @@ class GildedRose
       if item.name != "Sulfuras, Hand of Ragnaros"
         item.sell_in = item.sell_in - SELL_IN_DECREASE
       end
-      if item.sell_in < 0
+      if item.sell_in < SELL_IN_FINAL_DAY
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
             if item.quality > MINIMUM_QUALITY
