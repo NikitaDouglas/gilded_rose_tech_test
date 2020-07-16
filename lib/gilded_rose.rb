@@ -23,15 +23,7 @@ class GildedRose
         if item.name == "Aged Brie"
           update_aged_brie(item)
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-          if item.sell_in < SELL_IN_FINAL_DAY
-            item.quality = item.quality - item.quality
-          elsif item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
-            item.quality = item.quality + 3
-          elsif item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
-             item.quality = item.quality + 2
-          else
-            item.quality = item.quality + STANDARD_QUALITY_INCREASE
-          end 
+          update_back_stage_passes(item)
         else
           if item.sell_in < SELL_IN_FINAL_DAY
             item.quality = item.quality - 2
@@ -51,6 +43,18 @@ class GildedRose
     else
       item.quality = item.quality + STANDARD_QUALITY_INCREASE
     end
+  end
+
+  def update_back_stage_passes(item)
+    if item.sell_in < SELL_IN_FINAL_DAY
+      item.quality = item.quality - item.quality
+    elsif item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
+      item.quality = item.quality + 3
+    elsif item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
+      item.quality = item.quality + 2
+    else
+      item.quality = item.quality + STANDARD_QUALITY_INCREASE
+    end 
   end
 end
 
