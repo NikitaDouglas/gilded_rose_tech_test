@@ -6,6 +6,7 @@ class GildedRose
   STANDARD_QUALITY_INCREASE = 1
   SELL_IN_DECREASE = 1
   SELL_IN_FINAL_DAY = 0
+  BACKSTAGE_PASS_10_DAYS_LEFT = 10
 
   def initialize(items)
     @items = items
@@ -23,7 +24,7 @@ class GildedRose
         if item.quality < MAXIMUM_QUALITY
           item.quality = item.quality + STANDARD_QUALITY_INCREASE
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
+            if item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
               if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + STANDARD_QUALITY_INCREASE
               end
