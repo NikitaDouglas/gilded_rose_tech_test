@@ -18,7 +18,7 @@ describe GildedRose do
     it "never reduces the quality of any item below 0" do
       items = [Item.new("foo", 0, 0)]
       GildedRose.new(items).update_quality()
-      expect(items[0].quality).to eq 0
+      expect(items[0].quality).to eq GildedRose::MINIMUM_QUALITY
     end
 
     it "reduces the quality by 1, when sell_in > 0" do
@@ -76,7 +76,7 @@ describe GildedRose do
     it "drops the value to 0, when sell_in < 0" do
       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 5)]
       GildedRose.new(items).update_quality()
-      expect(items[0].quality).to eq 0
+      expect(items[0].quality).to eq GildedRose::MINIMUM_QUALITY
     end
   end
 

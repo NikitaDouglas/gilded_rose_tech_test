@@ -1,5 +1,7 @@
 class GildedRose
 
+  MINIMUM_QUALITY = 0
+
   def initialize(items)
     @items = items
   end
@@ -7,7 +9,7 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
+        if item.quality > MINIMUM_QUALITY
           if item.name != "Sulfuras, Hand of Ragnaros"
             item.quality = item.quality - 1
           end
@@ -35,7 +37,7 @@ class GildedRose
       if item.sell_in < 0
         if item.name != "Aged Brie"
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
+            if item.quality > MINIMUM_QUALITY
               if item.name != "Sulfuras, Hand of Ragnaros"
                 item.quality = item.quality - 1
               end
