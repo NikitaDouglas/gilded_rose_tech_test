@@ -54,7 +54,7 @@ class GildedRose
   end
 
   def update_aged_brie(item)
-    if item.sell_in < SELL_IN_FINAL_DAY
+    if is_after_sell_in_final_day?(item.sell_in)
       item.quality = item.quality + AGED_BRIE_PAST_SELL_IN_INCREASE
     else
       item.quality = item.quality + STANDARD_QUALITY_INCREASE
@@ -62,7 +62,7 @@ class GildedRose
   end
 
   def update_back_stage_passes(item)
-    if item.sell_in < SELL_IN_FINAL_DAY
+    if is_after_sell_in_final_day?(item.sell_in)
       item.quality = item.quality - item.quality
     elsif item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
       item.quality = item.quality + BACKSTAGE_PASS_5_DAYS_LEFT_QUALITY_INCREASE
