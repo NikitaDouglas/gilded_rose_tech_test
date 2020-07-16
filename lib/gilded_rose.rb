@@ -21,7 +21,7 @@ class GildedRose
     @items.each do |item|
       next if item.name == "Sulfuras, Hand of Ragnaros"
       item.sell_in = item.sell_in - SELL_IN_DECREASE
-      next if item.quality == MAXIMUM_QUALITY
+      next if is_maximum_quality?(item.quality)
 
       if item.quality > MINIMUM_QUALITY
         if item.name == "Aged Brie"
@@ -40,6 +40,10 @@ class GildedRose
   end
 
   private
+
+  def is_maximum_quality?(item_quality)
+    item_quality == MAXIMUM_QUALITY
+  end
 
   def update_aged_brie(item)
     if item.sell_in < SELL_IN_FINAL_DAY
