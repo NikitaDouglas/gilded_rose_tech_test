@@ -72,5 +72,11 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq 4
     end
+
+    it "drops the value to 0, when sell_in < 0" do
+      items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 5)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].quality).to eq 0
+    end
   end
 end
