@@ -8,6 +8,7 @@ class GildedRose
   SELL_IN_FINAL_DAY = 0
   BACKSTAGE_PASS_10_DAYS_LEFT = 10
   BACKSTAGE_PASS_5_DAYS_LEFT = 5
+  BACKSTAGE_PASS_10_DAYS_LEFT_QUALITY_INCREASE = 2
 
   def initialize(items)
     @items = items
@@ -51,12 +52,14 @@ class GildedRose
     elsif item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
       item.quality = item.quality + 3
     elsif item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
-      item.quality = item.quality + 2
+      item.quality = item.quality + BACKSTAGE_PASS_10_DAYS_LEFT_QUALITY_INCREASE
     else
       item.quality = item.quality + STANDARD_QUALITY_INCREASE
     end 
   end
 end
+
+
 
 
 
