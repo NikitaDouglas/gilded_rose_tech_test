@@ -10,6 +10,7 @@ class GildedRose
   BACKSTAGE_PASS_5_DAYS_LEFT = 5
   BACKSTAGE_PASS_10_DAYS_LEFT_QUALITY_INCREASE = 2
   BACKSTAGE_PASS_5_DAYS_LEFT_QUALITY_INCREASE = 3
+  AGED_BRIE_PAST_SELL_IN_INCREASE = 2
 
   def initialize(items)
     @items = items
@@ -41,7 +42,7 @@ class GildedRose
 
   def update_aged_brie(item)
     if item.sell_in < SELL_IN_FINAL_DAY
-      item.quality = item.quality + 2
+      item.quality = item.quality + AGED_BRIE_PAST_SELL_IN_INCREASE
     else
       item.quality = item.quality + STANDARD_QUALITY_INCREASE
     end
