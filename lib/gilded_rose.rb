@@ -18,35 +18,33 @@ class GildedRose
       next if item.name == "Sulfuras, Hand of Ragnaros"
       item.sell_in = item.sell_in - SELL_IN_DECREASE
       next if item.quality == MAXIMUM_QUALITY
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > MINIMUM_QUALITY
-            item.quality = item.quality - STANDARD_QUALITY_DECREASE
-        end
-      else   
-          item.quality = item.quality + STANDARD_QUALITY_INCREASE
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
-                item.quality = item.quality + STANDARD_QUALITY_INCREASE
-            end
-            if item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
-                item.quality = item.quality + STANDARD_QUALITY_INCREASE
-            end
-          end
-      end
-      if item.sell_in < SELL_IN_FINAL_DAY
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > MINIMUM_QUALITY
-                item.quality = item.quality - STANDARD_QUALITY_DECREASE
-            end
+
+      if item.quality > MINIMUM_QUALITY
+        if item.name == "Aged Brie"
+          if item.sell_in < SELL_IN_FINAL_DAY
+            item.quality = item.quality + 2
           else
-            item.quality = item.quality - item.quality
-          end
-        else
             item.quality = item.quality + STANDARD_QUALITY_INCREASE
+          end
+        elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+          if item.sell_in < SELL_IN_FINAL_DAY
+            item.quality = item.quality - item.quality
+          elsif item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
+            item.quality = item.quality + 3
+          elsif item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
+             item.quality = item.quality + 2
+          else
+            item.quality = item.quality + STANDARD_QUALITY_INCREASE
+          end 
+        else
+          if item.sell_in < SELL_IN_FINAL_DAY
+            item.quality = item.quality - 2
+          else
+            item.quality = item.quality - STANDARD_QUALITY_DECREASE
+          end
         end
-      end
-    end
+      end     
+    end     
   end
 end
 
