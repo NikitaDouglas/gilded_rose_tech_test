@@ -2,6 +2,7 @@ class GildedRose
 
   MINIMUM_QUALITY = 0
   MAXIMUM_QUALITY = 50
+  STANDARD_QUALITY_DECREASE = 1
 
   def initialize(items)
     @items = items
