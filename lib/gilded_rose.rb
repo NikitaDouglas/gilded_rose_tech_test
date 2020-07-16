@@ -4,6 +4,7 @@ class GildedRose
   MAXIMUM_QUALITY = 50
   STANDARD_QUALITY_DECREASE = 1
   STANDARD_QUALITY_INCREASE = 1
+  PAST_SELL_IN_QUALITY_DECREASE = 2
   SELL_IN_DECREASE = 1
   SELL_IN_FINAL_DAY = 0
   BACKSTAGE_PASS_10_DAYS_LEFT = 10
@@ -29,7 +30,7 @@ class GildedRose
           update_back_stage_passes(item)
         else
           if item.sell_in < SELL_IN_FINAL_DAY
-            item.quality = item.quality - 2
+            item.quality = item.quality - PAST_SELL_IN_QUALITY_DECREASE
           else
             item.quality = item.quality - STANDARD_QUALITY_DECREASE
           end
