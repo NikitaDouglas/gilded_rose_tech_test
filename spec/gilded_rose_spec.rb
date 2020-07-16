@@ -86,5 +86,11 @@ describe GildedRose do
       GildedRose.new(items).update_quality()
       expect(items[0].quality).to eq 5
     end
+
+    it "never changes the sell_in" do
+      items = [Item.new("Sulfuras, Hand of Ragnaros", 5, 5)]
+      GildedRose.new(items).update_quality()
+      expect(items[0].sell_in).to eq 5
+    end
   end
 end
