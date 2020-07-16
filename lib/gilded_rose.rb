@@ -1,6 +1,7 @@
 class GildedRose
 
   MINIMUM_QUALITY = 0
+  MAXIMUM_QUALITY = 50
 
   def initialize(items)
     @items = items
@@ -15,16 +16,16 @@ class GildedRose
           end
         end
       else
-        if item.quality < 50
+        if item.quality < MAXIMUM_QUALITY
           item.quality = item.quality + 1
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in < 11
-              if item.quality < 50
+              if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + 1
               end
             end
             if item.sell_in < 6
-              if item.quality < 50
+              if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + 1
               end
             end
@@ -46,7 +47,7 @@ class GildedRose
             item.quality = item.quality - item.quality
           end
         else
-          if item.quality < 50
+          if item.quality < MAXIMUM_QUALITY
             item.quality = item.quality + 1
           end
         end
