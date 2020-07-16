@@ -17,26 +17,21 @@ class GildedRose
     @items.each do |item|
       next if item.name == "Sulfuras, Hand of Ragnaros"
       item.sell_in = item.sell_in - SELL_IN_DECREASE
+      next if item.quality == MAXIMUM_QUALITY
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > MINIMUM_QUALITY
             item.quality = item.quality - STANDARD_QUALITY_DECREASE
         end
-      else
-        if item.quality < MAXIMUM_QUALITY
+      else   
           item.quality = item.quality + STANDARD_QUALITY_INCREASE
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in <= BACKSTAGE_PASS_10_DAYS_LEFT
-              if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + STANDARD_QUALITY_INCREASE
-              end
             end
             if item.sell_in <= BACKSTAGE_PASS_5_DAYS_LEFT
-              if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + STANDARD_QUALITY_INCREASE
-              end
             end
           end
-        end
       end
       if item.sell_in < SELL_IN_FINAL_DAY
         if item.name != "Aged Brie"
@@ -48,18 +43,12 @@ class GildedRose
             item.quality = item.quality - item.quality
           end
         else
-          if item.quality < MAXIMUM_QUALITY
             item.quality = item.quality + STANDARD_QUALITY_INCREASE
-          end
         end
       end
     end
   end
 end
-
-  def update_quality_aged_brie
-    
-  end
 
 class Item
   attr_accessor :name, :sell_in, :quality
