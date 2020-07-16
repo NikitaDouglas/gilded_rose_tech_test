@@ -3,6 +3,7 @@ class GildedRose
   MINIMUM_QUALITY = 0
   MAXIMUM_QUALITY = 50
   STANDARD_QUALITY_DECREASE = 1
+  STANDARD_QUALITY_INCREASE = 1
 
   def initialize(items)
     @items = items
@@ -13,21 +14,21 @@ class GildedRose
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > MINIMUM_QUALITY
           if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
+            item.quality = item.quality - STANDARD_QUALITY_DECREASE
           end
         end
       else
         if item.quality < MAXIMUM_QUALITY
-          item.quality = item.quality + 1
+          item.quality = item.quality + STANDARD_QUALITY_INCREASE
           if item.name == "Backstage passes to a TAFKAL80ETC concert"
             if item.sell_in < 11
               if item.quality < MAXIMUM_QUALITY
-                item.quality = item.quality + 1
+                item.quality = item.quality + STANDARD_QUALITY_INCREASE
               end
             end
             if item.sell_in < 6
               if item.quality < MAXIMUM_QUALITY
-                item.quality = item.quality + 1
+                item.quality = item.quality + STANDARD_QUALITY_INCREASE
               end
             end
           end
@@ -41,7 +42,7 @@ class GildedRose
           if item.name != "Backstage passes to a TAFKAL80ETC concert"
             if item.quality > MINIMUM_QUALITY
               if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
+                item.quality = item.quality - STANDARD_QUALITY_DECREASE
               end
             end
           else
@@ -49,7 +50,7 @@ class GildedRose
           end
         else
           if item.quality < MAXIMUM_QUALITY
-            item.quality = item.quality + 1
+            item.quality = item.quality + STANDARD_QUALITY_INCREASE
           end
         end
       end
