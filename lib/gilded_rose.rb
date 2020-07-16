@@ -21,11 +21,7 @@ class GildedRose
 
       if item.quality > MINIMUM_QUALITY
         if item.name == "Aged Brie"
-          if item.sell_in < SELL_IN_FINAL_DAY
-            item.quality = item.quality + 2
-          else
-            item.quality = item.quality + STANDARD_QUALITY_INCREASE
-          end
+          update_aged_brie(item)
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
           if item.sell_in < SELL_IN_FINAL_DAY
             item.quality = item.quality - item.quality
@@ -46,7 +42,19 @@ class GildedRose
       end     
     end     
   end
+
+  private
+
+  def update_aged_brie(item)
+    if item.sell_in < SELL_IN_FINAL_DAY
+      item.quality = item.quality + 2
+    else
+      item.quality = item.quality + STANDARD_QUALITY_INCREASE
+    end
+  end
 end
+
+
 
 class Item
   attr_accessor :name, :sell_in, :quality
