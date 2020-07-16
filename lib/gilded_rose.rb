@@ -12,6 +12,7 @@ class GildedRose
   BACKSTAGE_PASS_10_DAYS_LEFT_QUALITY_INCREASE = 2
   BACKSTAGE_PASS_5_DAYS_LEFT_QUALITY_INCREASE = 3
   AGED_BRIE_PAST_SELL_IN_INCREASE = 2
+  LEGENDARY_ITEMS = ["Sulfuras, Hand of Ragnaros"]
 
   def initialize(items)
     @items = items
@@ -19,7 +20,7 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      next if item.name == "Sulfuras, Hand of Ragnaros"
+      next if LEGENDARY_ITEMS.include?(item.name)
       item.sell_in -= SELL_IN_DECREASE
       next if is_maximum_quality?(item.quality)
 
