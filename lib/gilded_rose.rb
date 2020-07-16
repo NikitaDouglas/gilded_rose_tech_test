@@ -23,7 +23,7 @@ class GildedRose
       item.sell_in = item.sell_in - SELL_IN_DECREASE
       next if is_maximum_quality?(item.quality)
 
-      if item.quality > MINIMUM_QUALITY
+      if is_above_minimum_quality(item.quality)
         if item.name == "Aged Brie"
           update_aged_brie(item)
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
@@ -43,6 +43,10 @@ class GildedRose
 
   def is_maximum_quality?(item_quality)
     item_quality == MAXIMUM_QUALITY
+  end
+
+  def is_above_minimum_quality(item_quality)
+    item_quality > MINIMUM_QUALITY
   end
 
   def update_aged_brie(item)
