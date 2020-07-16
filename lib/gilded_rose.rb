@@ -29,7 +29,7 @@ class GildedRose
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
           update_back_stage_passes(item)
         else
-          if item.sell_in < SELL_IN_FINAL_DAY
+          if is_after_sell_in_final_day?(item.sell_in)
             item.quality = item.quality - PAST_SELL_IN_QUALITY_DECREASE
           else
             item.quality = item.quality - STANDARD_QUALITY_DECREASE
@@ -47,6 +47,10 @@ class GildedRose
 
   def is_above_minimum_quality(item_quality)
     item_quality > MINIMUM_QUALITY
+  end
+
+  def is_after_sell_in_final_day?(item_sell_in)
+    item_sell_in < SELL_IN_FINAL_DAY
   end
 
   def update_aged_brie(item)
