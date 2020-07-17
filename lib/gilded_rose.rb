@@ -34,11 +34,20 @@ class GildedRose
   private
 
   def update_sell_in(item)
-    if item.name == "Conjured Manna Bread"
+    if is_conjured?(item)
        item.sell_in -= 2
     else
       item.sell_in -= SELL_IN_DECREASE
     end
+  end
+  
+  def is_conjured?(item)
+    item.name.downcase.split(" ").each do |word|
+      if word == "conjured"
+        return true
+      end
+    end
+    return false
   end
    
   def update_quality(item)    

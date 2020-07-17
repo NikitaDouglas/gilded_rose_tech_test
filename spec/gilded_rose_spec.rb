@@ -11,7 +11,9 @@ describe GildedRose do
 
     it "reduces the sell_in value by 1" do
       items = [Item.new("foo", 0, 0)]
+      p items
       GildedRose.new(items).update_items()
+      p items
       expect(items[0].sell_in).to eq -1
     end
 
@@ -95,8 +97,14 @@ describe GildedRose do
   end
 
   describe "#update_items for 'Conjured' items" do
-    it "decreases the sell_in by 2 as standard" do
+    it "decreases the sell_in by 2 as standard for 'Conjured Manna Bread" do
       items = [Item.new("Conjured Manna Bread", 5, 5)]
+      GildedRose.new(items).update_items()
+      expect(items[0].sell_in).to eq 3
+    end
+
+    it "decreases the sell_in by 2 as standard for 'Conjured Red Wine" do
+      items = [Item.new("Conjured Red Wine", 5, 5)]
       GildedRose.new(items).update_items()
       expect(items[0].sell_in).to eq 3
     end
