@@ -62,12 +62,16 @@ class GildedRose
     elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
       update_back_stage_passes(item)
     else
-      if is_after_sell_in_final_day?(item.sell_in)
-        item.quality -= PAST_SELL_IN_QUALITY_DECREASE
-      else
-        item.quality -= STANDARD_QUALITY_DECREASE
-      end
+      update_standard_item_quality(item)
     end 
+  end
+
+  def update_standard_item_quality(item)
+    if is_after_sell_in_final_day?(item.sell_in)
+        item.quality -= PAST_SELL_IN_QUALITY_DECREASE
+    else
+      item.quality -= STANDARD_QUALITY_DECREASE
+    end
   end
 
   def is_legendary?(item)
