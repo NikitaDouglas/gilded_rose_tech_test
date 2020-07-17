@@ -22,7 +22,7 @@ class GildedRose
 
   def update_items()
     @items.each do |item|
-      next if LEGENDARY_ITEMS.include?(item.name)
+      next if is_legendary?(item)
       update_sell_in(item)
       
       if is_above_minimum_quality(item.quality)
@@ -51,6 +51,10 @@ class GildedRose
         item.quality -= STANDARD_QUALITY_DECREASE
       end
     end 
+  end
+
+  def is_legendary?(item)
+    LEGENDARY_ITEMS.include?(item.name)
   end
 
   def is_maximum_quality?(item_quality)
