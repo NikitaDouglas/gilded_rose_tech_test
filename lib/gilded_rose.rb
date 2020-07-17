@@ -1,3 +1,5 @@
+require_relative 'item'
+
 class GildedRose
 
   MINIMUM_QUALITY = 0
@@ -33,17 +35,18 @@ class GildedRose
    
   def update_quality(item)
     return if is_maximum_quality?(item.quality)
-        if item.name == "Aged Brie"
-          update_aged_brie(item)
-        elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
-          update_back_stage_passes(item)
-        else
-          if is_after_sell_in_final_day?(item.sell_in)
-            item.quality -= PAST_SELL_IN_QUALITY_DECREASE
-          else
-            item.quality -= STANDARD_QUALITY_DECREASE
-          end
-        end 
+    
+    if item.name == "Aged Brie"
+      update_aged_brie(item)
+    elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+      update_back_stage_passes(item)
+    else
+      if is_after_sell_in_final_day?(item.sell_in)
+        item.quality -= PAST_SELL_IN_QUALITY_DECREASE
+      else
+        item.quality -= STANDARD_QUALITY_DECREASE
+      end
+    end 
   end
 
   def update_sell_in(item)
@@ -80,23 +83,5 @@ class GildedRose
     else
       item.quality += STANDARD_QUALITY_INCREASE
     end 
-  end
-end
-
-
-
-
-
-class Item
-  attr_accessor :name, :sell_in, :quality
-
-  def initialize(name, sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
-
-  def to_s()
-    "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
