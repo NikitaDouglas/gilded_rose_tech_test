@@ -34,7 +34,11 @@ class GildedRose
   private
 
   def update_sell_in(item)
-    item.sell_in -= SELL_IN_DECREASE
+    if item.name == "Conjured Manna Bread"
+       item.sell_in -= 2
+    else
+      item.sell_in -= SELL_IN_DECREASE
+    end
   end
    
   def update_quality(item)    

@@ -93,4 +93,12 @@ describe GildedRose do
       expect(items[0].sell_in).to eq 5
     end
   end
+
+  describe "#update_items for 'Conjured' items" do
+    it "decreases the sell_in by 2 as standard" do
+      items = [Item.new("Conjured Manna Bread", 5, 5)]
+      GildedRose.new(items).update_items()
+      expect(items[0].sell_in).to eq 3
+    end
+  end
 end
