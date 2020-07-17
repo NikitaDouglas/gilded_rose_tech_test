@@ -80,7 +80,7 @@ describe GildedRose do
     end
   end
 
-  describe "#update quality for 'Sulfuras, Hand of Ragnaros'" do
+  describe "#update_items for 'Sulfuras, Hand of Ragnaros'" do
     it "never changes the quality" do
       items = [Item.new("Sulfuras, Hand of Ragnaros", 5, 5)]
       GildedRose.new(items).update_items()
