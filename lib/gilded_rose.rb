@@ -32,6 +32,10 @@ class GildedRose
   end
 
   private
+
+  def update_sell_in(item)
+    item.sell_in -= SELL_IN_DECREASE
+  end
    
   def update_quality(item)
     return if is_maximum_quality?(item.quality)
@@ -47,10 +51,6 @@ class GildedRose
         item.quality -= STANDARD_QUALITY_DECREASE
       end
     end 
-  end
-
-  def update_sell_in(item)
-    item.sell_in -= SELL_IN_DECREASE
   end
 
   def is_maximum_quality?(item_quality)
