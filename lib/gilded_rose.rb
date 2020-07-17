@@ -23,8 +23,14 @@ class GildedRose
       next if LEGENDARY_ITEMS.include?(item.name)
       update_sell_in(item)
       next if is_maximum_quality?(item.quality)
+      update_quality(item)
+    end     
+  end
 
-      if is_above_minimum_quality(item.quality)
+  private
+   
+  def update_quality(item)
+    if is_above_minimum_quality(item.quality)
         if item.name == "Aged Brie"
           update_aged_brie(item)
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
@@ -37,10 +43,7 @@ class GildedRose
           end
         end
       end     
-    end     
   end
-
-  private
 
   def update_sell_in(item)
     item.sell_in -= SELL_IN_DECREASE
