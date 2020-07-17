@@ -22,15 +22,17 @@ class GildedRose
     @items.each do |item|
       next if LEGENDARY_ITEMS.include?(item.name)
       update_sell_in(item)
-      next if is_maximum_quality?(item.quality)
-      update_quality(item)
+      
+      if is_above_minimum_quality(item.quality)
+        update_quality(item)
+      end
     end     
   end
 
   private
    
   def update_quality(item)
-    if is_above_minimum_quality(item.quality)
+    return if is_maximum_quality?(item.quality)
         if item.name == "Aged Brie"
           update_aged_brie(item)
         elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
@@ -41,8 +43,7 @@ class GildedRose
           else
             item.quality -= STANDARD_QUALITY_DECREASE
           end
-        end
-      end     
+        end 
   end
 
   def update_sell_in(item)
