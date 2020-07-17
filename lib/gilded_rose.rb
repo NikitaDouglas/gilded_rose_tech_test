@@ -66,14 +66,6 @@ class GildedRose
     end 
   end
 
-  def update_standard_item_quality(item)
-    if is_after_sell_in_final_day?(item.sell_in)
-        item.quality -= PAST_SELL_IN_QUALITY_DECREASE
-    else
-      item.quality -= STANDARD_QUALITY_DECREASE
-    end
-  end
-
   def is_legendary?(item)
     LEGENDARY_ITEMS.include?(item.name)
   end
@@ -88,6 +80,14 @@ class GildedRose
 
   def is_after_sell_in_final_day?(item_sell_in)
     item_sell_in < SELL_IN_FINAL_DAY
+  end
+
+  def update_standard_item_quality(item)
+    if is_after_sell_in_final_day?(item.sell_in)
+        item.quality -= PAST_SELL_IN_QUALITY_DECREASE
+    else
+      item.quality -= STANDARD_QUALITY_DECREASE
+    end
   end
 
   def update_aged_brie(item)
