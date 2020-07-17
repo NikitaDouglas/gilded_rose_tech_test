@@ -8,6 +8,7 @@ class GildedRose
   STANDARD_QUALITY_INCREASE = 1
   PAST_SELL_IN_QUALITY_DECREASE = 2
   SELL_IN_DECREASE = 1
+  CONJURED_ITEMS_SELL_IN_DECREASE = 2
   SELL_IN_FINAL_DAY = 0
   BACKSTAGE_PASS_10_DAYS_LEFT = 10
   BACKSTAGE_PASS_5_DAYS_LEFT = 5
@@ -35,7 +36,7 @@ class GildedRose
 
   def update_sell_in(item)
     if is_conjured?(item)
-       item.sell_in -= 2
+       item.sell_in -= CONJURED_ITEMS_SELL_IN_DECREASE
     else
       item.sell_in -= SELL_IN_DECREASE
     end
