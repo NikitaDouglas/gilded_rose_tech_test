@@ -18,7 +18,7 @@ class GildedRose
     @items = items
   end
 
-  def update_quality()
+  def update_items()
     @items.each do |item|
       next if LEGENDARY_ITEMS.include?(item.name)
       item.sell_in -= SELL_IN_DECREASE
